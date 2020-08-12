@@ -33,12 +33,12 @@ public class MainGui extends javax.swing.JFrame {
 
         fc = new javax.swing.JFileChooser();
         input = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        inputLabel = new javax.swing.JLabel();
+        inputChoose = new javax.swing.JButton();
         output = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        outputLabel = new javax.swing.JLabel();
+        outputChoose = new javax.swing.JButton();
+        okButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -48,12 +48,12 @@ public class MainGui extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Input File");
+        inputLabel.setText("Input File");
 
-        jButton1.setText("File Chooser");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        inputChoose.setText("File Chooser");
+        inputChoose.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                inputChooseActionPerformed(evt);
             }
         });
 
@@ -63,19 +63,19 @@ public class MainGui extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("Output Dir");
+        outputLabel.setText("Output Dir");
 
-        jButton2.setText("File Chooser");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        outputChoose.setText("File Chooser");
+        outputChoose.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                outputChooseActionPerformed(evt);
             }
         });
 
-        jButton3.setText("OK");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        okButton.setText("OK");
+        okButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                okButtonActionPerformed(evt);
             }
         });
 
@@ -86,20 +86,20 @@ public class MainGui extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1))
+                    .addComponent(outputLabel)
+                    .addComponent(inputLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(input)
                     .addComponent(output, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(outputChoose, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(inputChoose, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(170, 170, 170)
-                .addComponent(jButton3)
+                .addComponent(okButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -107,16 +107,16 @@ public class MainGui extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                    .addComponent(inputLabel)
                     .addComponent(input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(inputChoose))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(outputLabel)
                     .addComponent(output, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
+                    .addComponent(outputChoose))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3)
+                .addComponent(okButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -131,19 +131,19 @@ public class MainGui extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_outputActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void inputChooseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputChooseActionPerformed
         fc.setFileSelectionMode(javax.swing.JFileChooser.FILES_AND_DIRECTORIES);
         fc.showOpenDialog(this);
         input.setText(fc.getSelectedFile().getAbsolutePath());
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_inputChooseActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void outputChooseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_outputChooseActionPerformed
         fc.setFileSelectionMode(javax.swing.JFileChooser.DIRECTORIES_ONLY);
         fc.showOpenDialog(this);
         output.setText(fc.getSelectedFile().getAbsolutePath());
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_outputChooseActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
         try{
             MainGui.xtract(new File(input.getText()), output.getText());
         } catch(IOException e){
@@ -152,7 +152,7 @@ public class MainGui extends javax.swing.JFrame {
         }
         javax.swing.JOptionPane.showMessageDialog(rootPane, "Success");
         System.exit(0);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_okButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -217,11 +217,11 @@ public class MainGui extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFileChooser fc;
     private javax.swing.JTextField input;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton inputChoose;
+    private javax.swing.JLabel inputLabel;
+    private javax.swing.JButton okButton;
     private javax.swing.JTextField output;
+    private javax.swing.JButton outputChoose;
+    private javax.swing.JLabel outputLabel;
     // End of variables declaration//GEN-END:variables
 }
