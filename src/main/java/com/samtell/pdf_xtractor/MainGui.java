@@ -8,6 +8,7 @@ package com.samtell.pdf_xtractor;
 import org.apache.pdfbox.pdmodel.*;
 import java.io.File;
 import java.io.IOException;
+import javax.swing.filechooser.FileFilter;
 
 /**
  *
@@ -132,15 +133,25 @@ public class MainGui extends javax.swing.JFrame {
     }//GEN-LAST:event_outputActionPerformed
 
     private void inputChooseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputChooseActionPerformed
+	
+	fc.setSelectedFile(null);
         fc.setFileSelectionMode(javax.swing.JFileChooser.FILES_AND_DIRECTORIES);
+	fc.addChoosableFileFilter(filter);
+	fc.setFileFilter(filter);
         fc.showOpenDialog(this);
-        input.setText(fc.getSelectedFile().getAbsolutePath());
+	if(fc.getSelectedFile() != null){
+        	input.setText(fc.getSelectedFile().getAbsolutePath());
+	}
     }//GEN-LAST:event_inputChooseActionPerformed
 
     private void outputChooseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_outputChooseActionPerformed
+	fc.removeChoosableFileFilter(filter);
+	fc.setSelectedFile(null);
         fc.setFileSelectionMode(javax.swing.JFileChooser.DIRECTORIES_ONLY);
         fc.showOpenDialog(this);
-        output.setText(fc.getSelectedFile().getAbsolutePath());
+	if(fc.getSelectedFile() != null){
+        	output.setText(fc.getSelectedFile().getAbsolutePath());
+	}
     }//GEN-LAST:event_outputChooseActionPerformed
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
@@ -213,6 +224,23 @@ public class MainGui extends javax.swing.JFrame {
         
     }
     
+    FileFilter filter = new FileFilter(){
+	final String pdf = "pdf";
+	@Override
+	public String getDescription(){
+	    return pdf;
+	}	
+	@Override
+	public boolean accept(File f){
+	    String ext = null;
+	    String s = f.getName();
+	    int i = s.lastIndexOf('.');
+	    if(i>0 && i< s.length() -1){
+		ext = s.substring(i+1).toLowerCase();
+	    }
+	    return ext==null || ext.equals(pdf);
+	}
+    };	
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFileChooser fc;
