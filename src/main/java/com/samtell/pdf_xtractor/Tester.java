@@ -7,7 +7,10 @@ package com.samtell.pdf_xtractor;
 
 import java.awt.HeadlessException;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -37,6 +40,7 @@ public class Tester extends javax.swing.JFrame {
 
         chooser = new javax.swing.JFileChooser();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -47,13 +51,22 @@ public class Tester extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setText("jButton2");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(162, 162, 162)
-                .addComponent(jButton1)
+                .addGap(150, 150, 150)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton2)
+                    .addComponent(jButton1))
                 .addContainerGap(166, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -61,7 +74,9 @@ public class Tester extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(141, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addGap(136, 136, 136))
+                .addGap(70, 70, 70)
+                .addComponent(jButton2)
+                .addGap(43, 43, 43))
         );
 
         pack();
@@ -74,15 +89,25 @@ public class Tester extends javax.swing.JFrame {
 	    
 	    ImageGrabber ig = new ImageGrabber();
 	    ig.processDoc(doc);
-		    
-	    BufferedImage bi = Utils.rotate180(ig.images.get(0));
 	    
-	    JFrame frame= new JFrame();
-	    frame.getContentPane().setLayout(new java.awt.FlowLayout());
-	    frame.getContentPane().add(new JLabel(new ImageIcon(bi)));
-	    frame.pack();
-	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    frame.setVisible(true);
+	    int i = 1;
+		    
+	    for(BufferedImage bi : ig.getImages()){
+		
+		bi = Utils.rotate180(bi);
+		
+		new java.io.File("./tmp").mkdirs();
+		String path = "./tmp/img.png";
+		ImageIO.write(bi, "PNG", new File(path));
+		
+		new File("output").mkdirs();
+		try(FileWriter fr = new FileWriter("p"+i+".txt")){
+		    fr.write(ImageReader.extractImage(path));
+		}
+		
+	    }
+	    
+	    
 	    
 	} catch(HeadlessException | IOException t) {
 	    System.out.println(t);
@@ -90,6 +115,10 @@ public class Tester extends javax.swing.JFrame {
 	}
 	
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+	System.out.println(ImageReader.extractImage("tmp/img.png"));
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -130,5 +159,6 @@ public class Tester extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFileChooser chooser;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     // End of variables declaration//GEN-END:variables
 }
