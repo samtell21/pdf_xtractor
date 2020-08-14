@@ -164,7 +164,7 @@ public class MainGui extends javax.swing.JFrame {
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
         try{
-            MainGui.xtract(new File(input.getText()), output.getText());
+            xtract(new File(input.getText()), output.getText());
         } catch(IOException e){
             javax.swing.JOptionPane.showMessageDialog(rootPane, e+"\nexiting...");
             System.exit(1);
@@ -209,7 +209,7 @@ public class MainGui extends javax.swing.JFrame {
     }
     
     
-    public static void xtract(File file, String outputdir)
+    public void xtract(File file, String outputdir)
             throws IOException
     {
         int i = 1;
