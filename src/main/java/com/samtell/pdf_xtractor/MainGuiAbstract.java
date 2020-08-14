@@ -176,7 +176,7 @@ public abstract class MainGuiAbstract extends javax.swing.JFrame {
 
     
     
-    public abstract void xtract(String file, String outputdir);
+    public abstract void xtract(String file, String outputdir) throws IOException;
     
     FileFilter filter = new FileFilter(){
 	final String pdf = "pdf";

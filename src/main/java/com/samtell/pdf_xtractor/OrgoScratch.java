@@ -8,11 +8,14 @@ import java.io.*;
 import javax.swing.*;
 import org.apache.pdfbox.pdmodel.*;
 
+import java.util.LinkedList;
+import java.util.PriorityQueue;
+
 /**
  *
  * @author samtell
  */
-public class OrgoScratch extends MainGui{
+public class OrgoScratch extends MainGuiAbstract{
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -45,8 +48,37 @@ public class OrgoScratch extends MainGui{
     }
     
     @Override
-    public void xtract(File file, String outputdir){
-	
+    public void xtract(String path, String outputdir) throws IOException{
+	File file = new File(path);
+	try(PDDocument doc = PDDocument.load(file)){
+	    LinkedList<AbstractPDPage> pages = new LinkedList<>();
+	    doc.getPages().forEach(p -> { 
+		pages.add((TestPDPage) p);
+	    });
+	    
+	    LinkedList<String> codes = new LinkedList<>();
+	    
+	    for(AbstractPDPage p : pages){
+		String c = p.scan();
+		if(!codes.contains(c)) codes.add(c);
+	    }
+	    
+	    
+	    for(String c : codes){
+		PDDocument newdoc = new PDDocument();
+		for(AbstractPDPage p : (LinkedList<AbstractPDPage>) pages.clone()){
+		    if(p.scan() == c){
+			newdoc.addPage(p);
+			pages.remove(p);
+		    }
+		}
+		File newfile = new File("PackTicket_"+c);
+		newfile.createNewFile();
+		newdoc.save(newfile);
+	    }
+	       
+	}
+	    
     }
     
 }

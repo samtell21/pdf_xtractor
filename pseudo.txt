@@ -1,0 +1,43 @@
+OKOKOK :O I can't focus its 4pm on a friday, after a long week....
+
+ok
+
+so I get the pdf path
+load a pddoc
+I get the pages
+I scan off their code
+	that require me to:
+	pull the png
+	crop properly
+	and scan
+I put the the codes into a linked list (same length as pages)
+
+
+OK now I have all the codes and all the pages
+I take the unique from the codes
+I make a new doc for each unique
+I itterate throught the codes and add their corresponding page to the approprite doc
+I save the docs (in the appropriate file)
+
+done and done
+
+so what methods do I need
+
+abstract page
+	String scan()
+		crop!
+		return scan
+	abstract crop
+
+orgo ( path, dir ) 
+	pages = load(path).pages
+	cast all pages to abstract page
+	codes = pages.scans.uniq
+	for each c in codes
+		doc = new pddoc
+		for each p in pages
+			if(p.scan==c) doc.add(p)
+		doc.save(named c) {{=> a directory listener will then file it away...?}}
+
+
+	
