@@ -10,10 +10,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.LinkedList;
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import org.apache.pdfbox.pdmodel.PDDocument;
 
 /**
@@ -84,25 +82,16 @@ public class Tester extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 	try{
-	    chooser.showOpenDialog(this);
-	    PDDocument doc = PDDocument.load(chooser.getSelectedFile());
+	    PDDocument doc = getPDFFromFileChooser();
 	    
-	    ImageGrabber ig = new ImageGrabber();
-	    ig.processDoc(doc);
+	    LinkedList<String> strs = getTextFromPDF(doc, Rotate.FULL);
 	    
-	    int i = 1;
-		    
-	    for(BufferedImage bi : ig.getImages()){
-		
-		bi = Utils.rotate180(bi);
-		
-		new java.io.File("./tmp").mkdirs();
-		String path = "./tmp/img.png";
-		ImageIO.write(bi, "PNG", new File(path));
-		
-		new File("output").mkdirs();
-		try(FileWriter fr = new FileWriter("p"+i+".txt")){
-		    fr.write(ImageReader.extractImage(path));
+	    new File("output").mkdirs();
+	    
+	    for(int i = 0; i<strs.size(); i++){
+		try(FileWriter fr = new FileWriter(outPath(i+1))){
+		    new File(outPath(i+1)).createNewFile();
+		    fr.write(strs.get(i));
 		}
 		
 	    }
@@ -114,10 +103,52 @@ public class Tester extends javax.swing.JFrame {
 	    System.exit(1);
 	}
 	
+	System.exit(0);
+	
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private PDDocument getPDFFromFileChooser() throws IOException{
+	chooser.showOpenDialog(this);
+	return PDDocument.load(chooser.getSelectedFile());
+    }
+    
+    public enum Rotate{LEFT, RIGHT, FULL, NONE}
+    
+    private LinkedList<String> getTextFromPDF(PDDocument doc, Rotate r) throws IOException{
+	LinkedList<String> out = new LinkedList<>();
+	
+	ImageGrabber ig = new ImageGrabber();
+	ig.processDoc(doc);
+	
+
+	for(BufferedImage bi : ig.getImages()){
+	    
+	    switch(r){
+		case LEFT:  bi = Utils.rotate90ToLeft(bi);  break;
+		case RIGHT: bi = Utils.rotate90ToRight(bi); break;
+		case FULL:  bi = Utils.rotate180(bi);	    break;
+		case NONE:  
+	    }
+
+	    new java.io.File("./tmp").mkdirs();
+	    String path = "./tmp/img.png";
+	    ImageIO.write(bi, "PNG", new File(path));
+
+	    out.add(ImageReader.extractImage(path));
+	}
+	
+	return out;
+    }
+    
+    
+    private String outPath(int i){
+	return "output/p"+i+".txt";
+    }
+    
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-	System.out.println(ImageReader.extractImage("tmp/img.png"));
+	chooser.showOpenDialog(this);
+	String path = chooser.getSelectedFile().getAbsolutePath();
+	System.out.println(ImageReader.extractImage(path));
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

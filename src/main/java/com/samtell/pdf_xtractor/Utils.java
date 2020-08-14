@@ -65,7 +65,7 @@ public class Utils {
 	for( int x = 0; x < width; x++ ) {
 	    for( int y = 0; y < height; y++ ) {
 		    returnImage.setRGB(height-y-1,x,inputImage.getRGB(x, y));
-//Again check the Picture for better understanding
+	//Again check the Picture for better understanding
 	    }
 	}
 	return returnImage;
