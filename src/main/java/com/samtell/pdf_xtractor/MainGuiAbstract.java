@@ -5,7 +5,7 @@
  */
 package com.samtell.pdf_xtractor;
 
-import org.apache.pdfbox.pdmodel.*;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
