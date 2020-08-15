@@ -6,15 +6,20 @@
 package com.samtell.pdf_xtractor;
 
 import java.awt.image.BufferedImage;
-
+import org.apache.pdfbox.pdmodel.PDPage;
 /**
  *
  * @author samtell
  */
 public class TestPDPage extends AbstractPDPage{
+    
+    public TestPDPage(PDPage p){
+	super(p);
+    }
+    
     @Override
     protected BufferedImage crop(BufferedImage bi){
-	return bi;
+	return bi.getSubimage(1000, 700, 500, 800);
     }
     
     

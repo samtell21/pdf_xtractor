@@ -8,6 +8,7 @@ package com.samtell.pdf_xtractor;
 import org.apache.pdfbox.pdmodel.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import javax.swing.filechooser.FileFilter;
 
 /**
@@ -165,8 +166,9 @@ public abstract class MainGuiAbstract extends javax.swing.JFrame {
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
         try{
             xtract(input.getText(), output.getText());
-        } catch(Exception e){
+        } catch(IOException e){
             javax.swing.JOptionPane.showMessageDialog(rootPane, e+"\nexiting...");
+	    System.out.println(Arrays.toString(e.getStackTrace()));
             System.exit(1);
         }
         javax.swing.JOptionPane.showMessageDialog(rootPane, "Success");
@@ -178,7 +180,7 @@ public abstract class MainGuiAbstract extends javax.swing.JFrame {
     
     public abstract void xtract(String file, String outputdir) throws IOException;
     
-    FileFilter filter = new FileFilter(){
+    protected FileFilter filter = new FileFilter(){
 	final String pdf = "pdf";
 	@Override
 	public String getDescription(){

@@ -7,16 +7,27 @@ package com.samtell.pdf_xtractor;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import org.apache.pdfbox.pdmodel.PDPage;
 
 /**
  *
  * @author samtell
  */
-public abstract class AbstractPDPage extends org.apache.pdfbox.pdmodel.PDPage{
+public abstract class AbstractPDPage{
+    
+    private PDPage internalPDPage;
+    
+    public PDPage getThis(){
+	return internalPDPage;
+    }
+    
+    public AbstractPDPage(PDPage p){
+	internalPDPage = p;
+    }
     
     public String scan() throws IOException{
 	ImageGrabber ig = new ImageGrabber();
-	ig.processPage(this);
+	ig.processPage(internalPDPage);
 	BufferedImage bi = crop(ig.getImages().get(0));
 	return QR.decodeQRCode(bi);
     }

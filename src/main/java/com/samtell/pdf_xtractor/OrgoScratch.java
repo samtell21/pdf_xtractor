@@ -5,11 +5,9 @@
  */
 package com.samtell.pdf_xtractor;
 import java.io.*;
-import javax.swing.*;
 import org.apache.pdfbox.pdmodel.*;
 
 import java.util.LinkedList;
-import java.util.PriorityQueue;
 
 /**
  *
@@ -30,15 +28,11 @@ public class OrgoScratch extends MainGuiAbstract{
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(MainGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+	//</editor-fold>
+	
         //</editor-fold>
 
         /* Create and display the form */
@@ -53,7 +47,7 @@ public class OrgoScratch extends MainGuiAbstract{
 	try(PDDocument doc = PDDocument.load(file)){
 	    LinkedList<AbstractPDPage> pages = new LinkedList<>();
 	    doc.getPages().forEach(p -> { 
-		pages.add((TestPDPage) p);
+		pages.add(createPDPage(p));
 	    });
 	    
 	    LinkedList<String> codes = new LinkedList<>();
@@ -63,22 +57,26 @@ public class OrgoScratch extends MainGuiAbstract{
 		if(!codes.contains(c)) codes.add(c);
 	    }
 	    
+	    int i = 1;
 	    
 	    for(String c : codes){
 		PDDocument newdoc = new PDDocument();
-		for(AbstractPDPage p : (LinkedList<AbstractPDPage>) pages.clone()){
-		    if(p.scan() == c){
-			newdoc.addPage(p);
-			pages.remove(p);
+		for(AbstractPDPage p : pages){
+		    if(p.scan() == null ? c == null : p.scan().equals(c)){
+			newdoc.importPage(p.getThis());
 		    }
 		}
-		File newfile = new File("PackTicket_"+c);
-		newfile.createNewFile();
+		String fname = (c==null) ? "{null}" : c.replaceAll("/","-");
+		File newfile = new File(outputdir+"/"+fname+(i++)+".pdf");
 		newdoc.save(newfile);
 	    }
 	       
 	}
 	    
+    }
+    
+    protected AbstractPDPage createPDPage(PDPage p){
+	return new TestPDPage(p);
     }
     
 }
