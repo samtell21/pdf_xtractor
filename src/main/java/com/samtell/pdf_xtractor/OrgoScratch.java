@@ -15,7 +15,13 @@ import java.util.LinkedList;
  */
 public class OrgoScratch extends MainGuiAbstract{
     
-    public static void main(String args[]) {
+
+	/**
+	 *
+	 */
+	private static final long serialVersionUID = -7114905337304100022L;
+
+	public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -46,7 +52,7 @@ public class OrgoScratch extends MainGuiAbstract{
 	File file = new File(path);
 	try(PDDocument doc = PDDocument.load(file)){
 	    LinkedList<AbstractPDPage> pages = new LinkedList<>();
-	    doc.getPages().forEach(p -> { 
+	    doc.getPages().forEach(p -> {
 		pages.add(createPDPage(p));
 	    });
 	    
@@ -60,15 +66,16 @@ public class OrgoScratch extends MainGuiAbstract{
 	    int i = 1;
 	    
 	    for(String c : codes){
-		PDDocument newdoc = new PDDocument();
-		for(AbstractPDPage p : pages){
-		    if(p.scan() == null ? c == null : p.scan().equals(c)){
-			newdoc.importPage(p.getThis());
-		    }
-		}
-		String fname = (c==null) ? "{null}" : c.replaceAll("/","-");
-		File newfile = new File(outputdir+"/"+fname+(i++)+".pdf");
-		newdoc.save(newfile);
+          try(PDDocument newdoc = new PDDocument()){
+              for(AbstractPDPage p : pages){
+                  if(p.scan() == null ? c == null : p.scan().equals(c)){
+                      newdoc.importPage(p.getThis());
+                  }
+              }
+              String fname = (c==null) ? "{null}" : c.replaceAll("/","-");
+              File newfile = new File(outputdir+"/"+fname+(i++)+".pdf");
+              newdoc.save(newfile);
+          }
 	    }
 	       
 	}
