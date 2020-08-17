@@ -14,22 +14,32 @@ import org.apache.pdfbox.pdmodel.PDPage;
  * @author samtell
  */
 public abstract class AbstractPDPage{
+
+    protected String scan;
+    protected boolean scanned;
     
     private PDPage internalPDPage;
     
     public PDPage getThis(){
-	return internalPDPage;
+        return internalPDPage;
     }
     
     public AbstractPDPage(PDPage p){
-	internalPDPage = p;
+        scan = null;
+        scanned=false;
+        internalPDPage = p;
     }
     
     public String scan() throws IOException{
-	ImageGrabber ig = new ImageGrabber();
-	ig.processPage(internalPDPage);
-	BufferedImage bi = crop(ig.getImages().get(0));
-	return QR.decodeQRCode(bi);
+        if(!scanned){
+            System.out.println("scan block");
+            ImageGrabber ig = new ImageGrabber();
+            ig.processPage(internalPDPage);
+            BufferedImage bi = crop(ig.getImages().get(0));
+            scan = QR.decodeQRCode(bi);
+            scanned=true;
+        }
+        return scan;
     }
     
     protected abstract BufferedImage crop(BufferedImage bi);

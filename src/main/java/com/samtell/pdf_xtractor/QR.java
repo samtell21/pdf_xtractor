@@ -24,19 +24,19 @@ import javax.imageio.ImageIO;
 public class QR {
     
     public static String decodeQRCode(String path) throws IOException{
-	File qrCodeimage = new File(path);
-	return decodeQRCode(qrCodeimage);
+        File qrCodeimage = new File(path);
+        return decodeQRCode(qrCodeimage);
     }
     
     public static String decodeQRCode(File qrCodeimage) throws IOException{
 	
-	BufferedImage bufferedImage = ImageIO.read(qrCodeimage);
-	return decodeQRCode(bufferedImage);
+        BufferedImage bufferedImage = ImageIO.read(qrCodeimage);
+        return decodeQRCode(bufferedImage);
     }
     
     public static String decodeQRCode(BufferedImage bufferedImage){
 	
-	LuminanceSource source = new BufferedImageLuminanceSource(bufferedImage);
+        LuminanceSource source = new BufferedImageLuminanceSource(bufferedImage);
         BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
 
         try {

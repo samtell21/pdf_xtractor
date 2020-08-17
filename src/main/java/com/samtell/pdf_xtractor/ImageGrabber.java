@@ -25,24 +25,24 @@ import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 public class ImageGrabber extends PDFStreamEngine{
     
     public ImageGrabber() throws IOException{
-	images = new LinkedList<>();
+        images = new LinkedList<>();
     }
     
     protected LinkedList<BufferedImage> images;
     public LinkedList<BufferedImage> getImages(){
-	return images;
+        return images;
     }
     
     public void processDoc(PDDocument doc) throws IOException{
-	for(PDPage p : doc.getPages()){
-	    this.processPage(p);
-	}
+        for(PDPage p : doc.getPages()){
+            this.processPage(p);
+        }
     }
     
   
     @Override
     protected void processOperator( Operator operator, List<COSBase> operands) 
-	    throws IOException{
+        throws IOException{
         String operation = operator.getName();
         if( "Do".equals(operation) ){
             COSName objectName = (COSName) operands.get( 0 );
@@ -50,7 +50,7 @@ public class ImageGrabber extends PDFStreamEngine{
             if( xobject instanceof PDImageXObject){
                 PDImageXObject image = (PDImageXObject)xobject;
                 BufferedImage bImage = image.getImage();
-		images.add(bImage);
+                images.add(bImage);
                 
             } else if(xobject instanceof PDFormXObject){
                 PDFormXObject form = (PDFormXObject)xobject;

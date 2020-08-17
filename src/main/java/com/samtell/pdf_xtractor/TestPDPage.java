@@ -14,12 +14,12 @@ import org.apache.pdfbox.pdmodel.PDPage;
 public class TestPDPage extends AbstractPDPage{
     
     public TestPDPage(PDPage p){
-	super(p);
+        super(p);
     }
     
     @Override
     protected BufferedImage crop(BufferedImage bi){
-	return bi.getSubimage(1000, 700, 500, 800);
+        return bi;
     }
     
     

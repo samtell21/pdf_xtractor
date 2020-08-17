@@ -46,89 +46,89 @@ public abstract class MainGuiAbstract extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         input.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                inputActionPerformed(evt);
-            }
-        });
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    inputActionPerformed(evt);
+                }
+            });
 
         inputLabel.setText("Input File");
 
         inputChoose.setText("File Chooser");
         inputChoose.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                inputChooseActionPerformed(evt);
-            }
-        });
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    inputChooseActionPerformed(evt);
+                }
+            });
 
         output.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                outputActionPerformed(evt);
-            }
-        });
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    outputActionPerformed(evt);
+                }
+            });
 
         outputLabel.setText("Output Dir");
 
         outputChoose.setText("File Chooser");
         outputChoose.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                outputChooseActionPerformed(evt);
-            }
-        });
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    outputChooseActionPerformed(evt);
+                }
+            });
 
         okButton.setText("OK");
         okButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                okButtonActionPerformed(evt);
-            }
-        });
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    okButtonActionPerformed(evt);
+                }
+            });
 
         jLabel1.setText("TEST");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(outputLabel)
-                            .addComponent(inputLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(input)
-                            .addComponent(output, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(outputChoose, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(inputChoose, javax.swing.GroupLayout.Alignment.TRAILING)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(119, 119, 119)
-                        .addComponent(okButton)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
+                                  layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                  .addGroup(layout.createSequentialGroup()
+                                            .addContainerGap()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                      .addGroup(layout.createSequentialGroup()
+                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                          .addComponent(outputLabel)
+                                                                          .addComponent(inputLabel))
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                          .addComponent(input)
+                                                                          .addComponent(output, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE))
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                          .addComponent(outputChoose, javax.swing.GroupLayout.Alignment.TRAILING)
+                                                                          .addComponent(inputChoose, javax.swing.GroupLayout.Alignment.TRAILING)))
+                                                      .addGroup(layout.createSequentialGroup()
+                                                                .addComponent(jLabel1)
+                                                                .addGap(119, 119, 119)
+                                                                .addComponent(okButton)
+                                                                .addGap(0, 0, Short.MAX_VALUE)))
+                                            .addContainerGap())
+                                  );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(inputLabel)
-                    .addComponent(input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(inputChoose))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(outputLabel)
-                    .addComponent(output, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(outputChoose))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(okButton)
-                    .addComponent(jLabel1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+                                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                          .addContainerGap()
+                                          .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                    .addComponent(inputLabel)
+                                                    .addComponent(input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(inputChoose))
+                                          .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                          .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                    .addComponent(outputLabel)
+                                                    .addComponent(output, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(outputChoose))
+                                          .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                          .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                    .addComponent(okButton)
+                                                    .addComponent(jLabel1))
+                                          .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -143,24 +143,24 @@ public abstract class MainGuiAbstract extends javax.swing.JFrame {
 
     private void inputChooseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputChooseActionPerformed
 	
-	fc.setSelectedFile(null);
+        fc.setSelectedFile(null);
         fc.setFileSelectionMode(javax.swing.JFileChooser.FILES_AND_DIRECTORIES);
-	fc.addChoosableFileFilter(filter);
-	fc.setFileFilter(filter);
+        fc.addChoosableFileFilter(filter);
+        fc.setFileFilter(filter);
         fc.showOpenDialog(this);
-	if(fc.getSelectedFile() != null){
-        	input.setText(fc.getSelectedFile().getAbsolutePath());
-	}
+        if(fc.getSelectedFile() != null){
+            input.setText(fc.getSelectedFile().getAbsolutePath());
+        }
     }//GEN-LAST:event_inputChooseActionPerformed
 
     private void outputChooseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_outputChooseActionPerformed
-	fc.removeChoosableFileFilter(filter);
-	fc.setSelectedFile(null);
+        fc.removeChoosableFileFilter(filter);
+        fc.setSelectedFile(null);
         fc.setFileSelectionMode(javax.swing.JFileChooser.DIRECTORIES_ONLY);
         fc.showOpenDialog(this);
-	if(fc.getSelectedFile() != null){
-        	output.setText(fc.getSelectedFile().getAbsolutePath());
-	}
+        if(fc.getSelectedFile() != null){
+            output.setText(fc.getSelectedFile().getAbsolutePath());
+        }
     }//GEN-LAST:event_outputChooseActionPerformed
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
@@ -168,7 +168,7 @@ public abstract class MainGuiAbstract extends javax.swing.JFrame {
             xtract(input.getText(), output.getText());
         } catch(IOException e){
             javax.swing.JOptionPane.showMessageDialog(rootPane, e+"\nexiting...");
-	    System.out.println(Arrays.toString(e.getStackTrace()));
+            System.out.println(Arrays.toString(e.getStackTrace()));
             System.exit(1);
         }
         javax.swing.JOptionPane.showMessageDialog(rootPane, "Success");
@@ -181,22 +181,22 @@ public abstract class MainGuiAbstract extends javax.swing.JFrame {
     public abstract void xtract(String file, String outputdir) throws IOException;
     
     protected FileFilter filter = new FileFilter(){
-	final String pdf = "pdf";
-	@Override
-	public String getDescription(){
-	    return pdf;
-	}	
-	@Override
-	public boolean accept(File f){
-	    String ext = null;
-	    String s = f.getName();
-	    int i = s.lastIndexOf('.');
-	    if(i>0 && i< s.length() -1){
-		ext = s.substring(i+1).toLowerCase();
-	    }
-	    return ext==null || ext.equals(pdf);
-	}
-    };	
+            final String pdf = "pdf";
+            @Override
+            public String getDescription(){
+                return pdf;
+            }	
+            @Override
+            public boolean accept(File f){
+                String ext = null;
+                String s = f.getName();
+                int i = s.lastIndexOf('.');
+                if(i>0 && i< s.length() -1){
+                    ext = s.substring(i+1).toLowerCase();
+                }
+                return ext==null || ext.equals(pdf);
+            }
+        };	
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFileChooser fc;
