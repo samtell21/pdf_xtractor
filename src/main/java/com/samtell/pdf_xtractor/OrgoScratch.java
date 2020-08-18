@@ -56,7 +56,6 @@ public class OrgoScratch extends MainGuiAbstract{
             LinkedList<String> codes = new LinkedList<>();
 	    
             for(AbstractPDPage p : pages){
-                System.out.println("loop itteration");
                 String c = p.scan();
                 if(!codes.contains(c)) {
                     codes.add(c);

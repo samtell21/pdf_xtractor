@@ -5,44 +5,60 @@
  */
 package com.samtell.pdf_xtractor;
 
-import com.google.zxing.*;
-import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
-import com.google.zxing.common.HybridBinarizer;
-import javax.imageio.ImageIO;
+
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+
+import org.apache.pdfbox.pdmodel.PDDocument;
+
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+
 import java.awt.FlowLayout;
-  
+
+import java.util.Scanner;
 
   
 public class QRTests { 
-    private static String decodeQRCode(File qrCodeimage) throws IOException {
-        BufferedImage bufferedImage = ImageIO.read(qrCodeimage);
+    private static void view(BufferedImage bufferedImage) throws IOException {
 	
-	bufferedImage = Utils.rotate180(bufferedImage);
+        bufferedImage = Utils.rotate180(bufferedImage);
+
+        bufferedImage=com.samtell.pdf_xtractor.Utils.rotate180(bufferedImage);
+
+        Scanner k = new Scanner(System.in);
+        System.out.print("start x: ");
+        int sx = k.nextInt();
+        System.out.print("start y: ");
+        int sy = k.nextInt();
+        System.out.print("crop x: ");
+        int cx = k.nextInt();
+        System.out.print("crop y: ");
+        int cy = k.nextInt();
+        System.out.println(sx+" "+sy+" "+cx+" "+cy);
+        bufferedImage = bufferedImage.getSubimage(sx,sy,cx,cy);
+
+        
 	
-	bufferedImage = bufferedImage.getSubimage(1000,700, 500, 800);
+	
+        JFrame f = new JFrame();
+        JLabel l = new JLabel();
+        ImageIcon i = new ImageIcon(bufferedImage);
+        l.setIcon(i);
+        f.getContentPane().setLayout(new FlowLayout());
+        f.getContentPane().add(l);
+        f.pack();
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setVisible(true);
+        //ImageIO.write(bufferedImage, "PNG", new File("img.png"));
+
+        System.out.println(QR.decodeQRCode("img.png"));
 	
 	
-	
-	JFrame f = new JFrame();
-	JLabel l = new JLabel();
-	ImageIcon i = new ImageIcon(bufferedImage);
-	l.setIcon(i);
-	f.getContentPane().setLayout(new FlowLayout());
-	f.getContentPane().add(l);
-	f.pack();
-	f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	f.setVisible(true);
-	
-	
-        return QR.decodeQRCode(bufferedImage);
     }
     
 
@@ -52,27 +68,38 @@ public class QRTests {
 
     public static void main(String[] args) {
         try {
-	    //JFileChooser jf = new JFileChooser();
-	    //JFrame frame = new JFrame();
-	    //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    //frame.setVisible(true);
-	    //jf.showOpenDialog(frame);
-	    //
-	    //String path = jf.getSelectedFile().getAbsolutePath();
+            //JFileChooser jf = new JFileChooser();
+            //JFrame frame = new JFrame();
+            //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            //frame.setVisible(true);
+            //jf.showOpenDialog(frame);
+            //
+            //String path = jf.getSelectedFile().getAbsolutePath();
+            
 	    
-            File file = new File("../tests/img.png");
-            String decodedText = decodeQRCode(file);
-            if(decodedText == null) {
-                System.out.println("No QR Code found in the image");
-            } else {
-                System.out.println("Decoded text = " + decodedText);
-            }
+            //File file = new File("../../multipage-codes.pdf");
+            //try(PDDocument doc = PDDocument.load(file)){
+            //    ImageGrabber ig = new ImageGrabber();
+            //    ig.processDoc(doc);
+            //    BufferedImage bi = ig.getImages().get(1);
+            //    view(bi);
+
+
+            //}
+
+            System.out.println(test());
+           
         } catch (IOException e) {
             System.out.println("Could not decode QR Code, IOException :: " + e.getMessage());
         }
+
+
 	
 
     }
-  
-    
-} 
+
+
+    public static String test() throws IOException {
+        return QR.decodeQRCode("img.png");
+    }
+}

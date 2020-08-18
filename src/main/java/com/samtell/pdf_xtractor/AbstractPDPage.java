@@ -32,7 +32,6 @@ public abstract class AbstractPDPage{
     
     public String scan() throws IOException{
         if(!scanned){
-            System.out.println("scan block");
             ImageGrabber ig = new ImageGrabber();
             ig.processPage(internalPDPage);
             BufferedImage bi = crop(ig.getImages().get(0));

@@ -19,7 +19,7 @@ public class TestPDPage extends AbstractPDPage{
     
     @Override
     protected BufferedImage crop(BufferedImage bi){
-        return bi;
+        return bi.getSubimage(0,0,350,350);
     }
     
     

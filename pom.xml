@@ -79,7 +79,7 @@
                 <archive>
                     <manifest>
                         <addClasspath>true</addClasspath>
-                        <mainClass>com.samtell.pdf_xtractor.OrgoScratch</mainClass>
+                        <mainClass>com.samtell.pdf_xtractor.QRTests</mainClass>
                     </manifest>
                 </archive>
             </configuration>
