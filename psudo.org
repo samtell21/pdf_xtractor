@@ -1,0 +1,23 @@
+* New Pseudo Code
+** ClearImageUtils
+   * codes(path)
+     * PDDocument doc = PDDocument.load(path)
+     * length = doc.pages.length();
+     * linkedlist<String> codes
+     * for i in length
+       * scan the ith page of doc
+       * add it to codes
+     * return codes
+** Main
+   * extends MainGuiAbstract
+     * xtract(filepath, outputpath)
+        * codes = ClearImageUtils.codes(filepath)
+        * PDDocument doc = PDDocument.load(filepath)
+        * ucodes = codes.uniq
+        * for c in ucodes
+          * newdoc = new PDDocument
+          * for i in doc.length
+            * if codes[i] = c
+              * newdoc.add(doc.get(i))
+          * newdoc.save()
+      
