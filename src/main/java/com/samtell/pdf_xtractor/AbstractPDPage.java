@@ -18,7 +18,7 @@ public abstract class AbstractPDPage{
     protected String scan;
     protected boolean scanned;
     
-    private PDPage internalPDPage;
+    private final PDPage internalPDPage;
     
     public PDPage getThis(){
         return internalPDPage;
